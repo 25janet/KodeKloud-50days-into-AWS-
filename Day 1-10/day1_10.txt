@@ -1,0 +1,111 @@
+10-DAY CLOUD CHALLENGE (AWS FUNDAMENTALS PROJECT)
+
+This file documents my Day 1 to Day 10 Cloud Challenge, where I practiced
+core AWS services by building and configuring cloud infrastructure step by step.
+The goal of this project was to strengthen my understanding of EC2, networking,
+security, storage, and cost optimization.
+
+--------------------------------------------------
+DAY 1: KEY PAIR CREATION
+--------------------------------------------------
+- Created an EC2 key pair
+- Key name: server
+- Key type: RSA
+- Purpose: Secure SSH access to EC2 instances
+
+--------------------------------------------------
+DAY 2: SECURITY GROUP CONFIGURATION
+--------------------------------------------------
+- Created a security group named: execution
+- Inbound rules configured:
+  1. HTTP
+     - Port: 80
+     - Source: 0.0.0.0/0
+  2. SSH
+     - Port: 22
+     - Source: 0.0.0.0/0
+- Purpose: Allow web traffic and secure remote access
+
+--------------------------------------------------
+DAY 3: SUBNET AND CIDR BLOCK ANALYSIS
+--------------------------------------------------
+- Created a subnet
+- Identified an overlapping CIDR block issue
+- Learned the importance of proper CIDR planning to avoid network conflicts
+
+--------------------------------------------------
+DAY 4: S3 BUCKET CREATION
+--------------------------------------------------
+- Created an Amazon S3 bucket
+- Enabled versioning
+- Purpose: Maintain object history and protect against accidental deletion
+
+--------------------------------------------------
+DAY 5: EBS VOLUME CREATION
+--------------------------------------------------
+- Created an EBS volume
+- Volume type: GP (General Purpose SSD)
+- Size: 20 GB
+- Purpose: Provide persistent storage for EC2 instances
+
+--------------------------------------------------
+DAY 6: EC2 INSTANCE LAUNCH
+--------------------------------------------------
+- Launched an EC2 instance
+- AMI: Amazon Linux
+- Instance type: t2.micro
+- Key pair used: DataCenter
+- Purpose: Run and test compute workloads
+
+--------------------------------------------------
+DAY 7: COST OPTIMIZATION
+--------------------------------------------------
+- Changed instance type:
+  From: t2.micro
+  To: t2.nano
+- Reason:
+  - Instance was underutilized
+  - t2.nano is approximately half the cost of t2.micro
+- Learned:
+  - Importance of monitoring resource usage
+  - Selecting instance types based on workload needs
+
+--------------------------------------------------
+DAY 8 - DAY 9: INSTANCE PROTECTION
+--------------------------------------------------
+- Enabled stop protection
+- Enabled termination protection
+- Purpose:
+  - Prevent accidental stopping
+  - Prevent accidental deletion of the instance
+
+--------------------------------------------------
+DAY 10: ELASTIC IP CONFIGURATION
+--------------------------------------------------
+- Allocated an Elastic IP address
+- Associated the Elastic IP with the EC2 instance
+- Learned:
+  - Public IP addresses change after stopping and starting an instance
+    if no Elastic IP is used
+  - Elastic IP provides a static public IP address
+
+--------------------------------------------------
+KEY LEARNINGS
+--------------------------------------------------
+- Security groups control inbound access to resources
+- CIDR planning is critical for networking
+- Cost optimization reduces unnecessary cloud spending
+- Elastic IPs ensure consistent public access
+- Instance protection helps prevent costly mistakes
+
+--------------------------------------------------
+AWS SERVICES USED
+--------------------------------------------------
+- Amazon EC2
+- Amazon VPC
+- Amazon S3
+- Amazon EBS
+- Elastic IP
+- Security Groups
+
+
