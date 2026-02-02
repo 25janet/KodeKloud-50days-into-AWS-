@@ -1,0 +1,18 @@
+Day 11 – Elastic Network Interface (ENI)
+
+Identified and learned about attaching a network interface using Elastic Network Interfaces.
+
+Elastic Network Interfaces provide flexible networking by allowing additional network interfaces to be attached or detached from EC2 instances without stopping the instance.
+
+Each ENI:
+- Belongs to one VPC and one subnet
+- Has a primary private IPv4 address
+- Can have secondary private IP addresses
+- Can optionally have an Elastic IP associated
+
+An ENI can be:
+- Detached from one EC2 instance
+- Attached to another EC2 instance within the same Availability Zone
+
+Key Point:
+The Elastic Network Interface must be created in the same subnet and Availability Zone as the EC2 instance it is attached to.
