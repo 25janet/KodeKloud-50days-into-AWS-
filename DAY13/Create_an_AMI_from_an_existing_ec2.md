@@ -10,10 +10,15 @@
 - Go to actions then select images and template -> create images
 
 - Configure the details that is : 
-     **Name of the AMI**
-     **The description**
-     **Choose the enable/clear the reboot option**
-     **Confirm the volume settings**
-     **Create Image**
+    **Name of the AMI**
+
+    **The description**
+
+    **Choose the enable/clear the reboot option** 
+    
+    **Confirm the volume settings**
+
+    **Create Image**
+            
 
 - Once  followed this instructions start the instance and wait for the AMI status to be available
