@@ -2,7 +2,7 @@
 
 ##  Overview
 
-An **Elastic IP (EIP)** is a static public IPv4 address provided by **:contentReference[oaicite:0]{index=0} (AWS)**.  
+An **Elastic IP (EIP)** is a static public IPv4 address provided by **:(AWS)**.  
 
 It is designed for dynamic cloud computing and allows you to maintain a fixed public IP address for your EC2 instance.
 
