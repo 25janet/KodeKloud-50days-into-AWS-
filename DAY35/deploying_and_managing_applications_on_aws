@@ -1,0 +1,99 @@
+# XFusion Web App Deployment on AWS – Detailed Guide
+
+This project demonstrates deploying a **PHP web application** on **AWS EC2** connected to a **private MySQL RDS database**. This guide is structured for learning and revision purposes, covering **architecture, setup, and key concepts**.
+
+---
+
+## **Project Overview**
+
+- **EC2 Instance**: `xfusion-ec2`
+  - Hosts the PHP web application
+  - Accessible over **HTTP (port 80)**
+- **RDS Instance**: `xfusion-rds`
+  - MySQL v8.4.5 database, **private**
+  - Instance type: `db.t3.micro`
+  - Storage: 5 GiB, gp2
+- **Database**: `xfusion_db`
+  - Master user: `xfusion_admin`
+  - Connected via PHP `mysqli` extension
+
+**Why this setup?**
+- Isolated database for security
+- EC2 handles web requests
+- Private RDS ensures no public exposure
+
+---
+
+## **Architecture Diagram**
+            +---------------------+
+            |   Users (Browser)   |
+            +----------+----------+
+                       |
+                   HTTP (80)
+                       |
+            +----------v----------+
+            |   EC2 Instance      |
+            |  xfusion-ec2       |
+            |  PHP App /index.php |
+            +----------+----------+
+                       |
+                   MySQL (3306)
+                       |
+            +----------v----------+
+            |   RDS Instance      |
+            |  xfusion-rds       |
+            |  MySQL v8.4.5      |
+            +---------------------+
+            
+---
+
+## **Step-by-Step Setup**
+
+### **Step 1: Create Private RDS**
+- Go to AWS RDS → Create Database → Sandbox Template
+- Engine: MySQL 8.4.5  
+- Instance type: db.t3.micro  
+- Storage: 5 GiB gp2  
+- DB name: `xfusion_db`  
+- Master user: `xfusion_admin`  
+- Keep it **private** for security  
+- Wait for **Available status**
+
+### **Step 2: Configure Security Groups**
+- **EC2 SG**:
+  - Allow HTTP 80 → anywhere (for testing)
+  - Allow MySQL 3306 → **RDS SG**
+- **RDS SG**:
+  - Allow MySQL 3306 → **EC2 SG**
+  
+> **Revision Tip:** Security groups act like **firewall rules** at the instance level.
+
+### **Step 3: SSH Key Setup for EC2**
+```bash
+# On your local/aws-client machine
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@<xfusion-ec2-public-ip>
+
+ssh root@<xfusion-ec2-public-ip>  # test passwordless SSH
+
+Why? This allows secure, passwordless SSH access for DevOps operations.
+
+Step 4: Deploy PHP Application
+
+Copy index.php:
+
+scp /root/index.php root@<xfusion-ec2-public-ip>:/var/www/html/index.php
+
+Update DB credentials in /var/www/html/index.php:
+
+$servername = "<xfusion-rds-endpoint>";
+$username = "xfusion_admin";
+$password = "<your-password>";
+$dbname = "xfusion_db";
+
+Test connection in browser:
+
+http://<xfusion-ec2-public-ip>/index.php
+
+Expected output: Connected successfully
