@@ -34,7 +34,7 @@ The system uses:
 
 ##  System Diagram
 
-```mermaid
+```
 flowchart TD
                 ┌──────────────────────────┐
                 │        SNS Topic         │
